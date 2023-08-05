@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import { theme } from './theme'
+import { theme } from './'
 
 export const GlobalStyles = createGlobalStyle`
   * {
@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   html {
-    font-size: 16px;
+    font-size: ${theme.font.sizes.xxxs};
     line-height: 24px;
   }
   
@@ -22,15 +22,20 @@ export const GlobalStyles = createGlobalStyle`
     color: ${theme.colors.dark};
   }
 
-  body, textarea, button {
-    font-family: ${theme.font.family};
+  body, textarea {
+    font-family: ${theme.font.family.primary};
   }
 
   input {
-    font-family: ${theme.font.input};
+    font-family: ${theme.font.family.secondary};
+  }
+
+  input[type="checkbox"] {
+    cursor: pointer;
   }
   
   button{
+    font-family: ${theme.font.family.button};
     cursor: pointer;
   }
 

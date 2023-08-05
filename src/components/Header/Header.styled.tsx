@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../styles/theme";
+import { theme } from "../../styles";
 
 export const HeaderStyle = styled.div`
   width: 100%;
@@ -11,51 +11,41 @@ export const HeaderStyle = styled.div`
   border-bottom: 3px solid ${theme.colors.bg_primary};
 
   h2 {
-    font-size: 1.6rem;
-    font-weight: ${theme.font.bolder};
+    font-size: ${theme.font.sizes.xs};
     margin-left: 5%;
   }
 
-  /* @media only screen and (max-width: 1200px) {
-    padding: 15px;
-    
-    h2 {
-      font-size: 1.3rem;
-    }
-  } */
-
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: ${theme.screen.desktop}) {
     justify-content: center;
     padding-left: 0;
     padding: 12px;
-    font-size: 0.7rem;
     text-align: center;
     line-height: 2.2rem;
 
     h2 {
-      font-size: 1.3rem;
+      font-size: ${theme.font.sizes.xxs};
       margin-left: 0;
     }
   }
 
-  @media only screen and (max-width: 641px) {
+  @media only screen and (max-width: ${theme.screen.mobile}) {
     justify-content: center;
     text-align: center;
     line-height: 2.2rem;
     padding: 5px;
 
     h2 {
-      font-size: 1.2rem;
+      font-size: ${theme.font.sizes.xxxs};
       margin-left: 0;
     }
   }
 
   @media only screen and (max-height: ${theme.screen.mobile}) {
-    font-size: 0.7rem;
+    justify-content: center;
     padding: 5px;
 
     h2 {
-      font-size: 1.2rem;
+      font-size: ${theme.font.sizes.xxxs};
       margin-left: 0;
     }
   }

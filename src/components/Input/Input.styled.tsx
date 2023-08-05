@@ -1,48 +1,36 @@
 import styled from "styled-components";
-import { theme } from "../../styles/theme";
+import { theme } from "../../styles";
 
-export const InputStyle = styled.input<{ errorMessage?: string }>`
+export const InputStyle = styled.input`
+  width: 90%;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px;
-  border: 1px solid ${(props) => (props.errorMessage ? "#dc3545" : "#6e6e6e")};
-  border-radius: 5px;
-  width: 90%;
-  height: 38px;
-  font-size: 1em; 
+  padding: 6px;
   margin-top: 5px;
-  color: ${theme.colors.dark_light};
+  font-size: ${theme.font.sizes.xxxs};
+  border: 1px solid ${theme.colors.gray};
+  border-radius: ${theme.border.radius.s};
 
-  &:hover {
-    box-shadow: ${(props) =>
-      props.errorMessage
-        ? "#dc3545"
-        : "rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 1px"};
+  &:hover, &:focus-within {
+    border: 2px solid ${theme.colors.bg_primary};
   }
 
-  @media only screen and (max-width: 641px) {
+  @media only screen and (max-width: ${theme.screen.mobile}) {
     width: 100%;
   }
 
-  @media only screen and (max-height: 420px) {
-    font-size: 0.9rem;
+  @media only screen and (max-height: ${theme.screen.mobile}) {
+    font-size: ${theme.font.sizes.xxxxs};
   }
 `;
 
-export const ErrorMessage = styled.div`
-  color: ${theme.colors.error};
-  font-size: 0.9em;
-  padding: 6px;
-  padding-left: 0;
-  font-weight: bold;
-`;
-
 export const Label = styled.div`
-  font-family: ${theme.font.input};
-  //font-weight: ${theme.font.bolder};
+  font-family: ${theme.font.family.secondary};
+  margin-top: 3px;
 
-  @media only screen and (max-height: 420px) {
-    font-size: 0.9rem;
+  @media only screen and (max-height: ${theme.screen.mobile}) {
+    font-size: ${theme.font.sizes.xxxxs};
   }
 `;

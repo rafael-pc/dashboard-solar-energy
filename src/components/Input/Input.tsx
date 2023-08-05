@@ -1,22 +1,19 @@
-import React, { InputHTMLAttributes } from "react";
-import { InputStyle, ErrorMessage, Label } from "./Input.styled";
+import { FC, InputHTMLAttributes } from "react";
+import { InputStyle, Label } from "./Input.styled";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
   label?: string;
   width?: string | number;
 }
 
-const Input: React.FC<InputProps> = ({ errorMessage, label, width, ...props }) => {
+const Input: FC<IInputProps> = ({label, ...props }) => {
   return (
     <>
       <Label>{label}</Label>
-      <InputStyle
-        errorMessage={errorMessage}
-        style={{ width: width }}
+      <InputStyle        
         {...props}
-      ></InputStyle>
-      <ErrorMessage>{errorMessage}</ErrorMessage>
+      />
     </>
   );
 };

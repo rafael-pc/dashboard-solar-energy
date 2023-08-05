@@ -1,11 +1,11 @@
-interface Item {
+interface IItem {
   id: number;
   unidade: string;
   date: string;
   energia: number;
 }
 
-interface Unit {
+interface IUnit {
   id: number;
   apelido: string;
   local: string;
@@ -15,13 +15,13 @@ interface Unit {
 }
 
 export const usePlaceholderMonthData = (): void => {
-  const data: Unit[] = JSON.parse(localStorage.getItem("monthlyData") || "[]");
-  const ids: number[] = data.map((item: Unit) => item.id);
-  const hasIdGreater: boolean = ids.some((id) => id >= 23);
+  const data: IUnit[] = JSON.parse(localStorage.getItem("monthlyData") || "[]");
+  const ids: number[] = data.map((item: IUnit) => item.id);
+  const hasId: boolean = ids.some((id) => id >= 23);
 
-  if (!hasIdGreater) {
-    document.addEventListener("DOMContentLoaded", () => {
-      const items: Item[] = [
+  if (!hasId) {
+    const addPlaceholderData = () => {
+      const items: IItem[] = [
         { id: 1, unidade: "1", date: "2023-01", energia: 300 },
         { id: 2, unidade: "2", date: "2023-02", energia: 150 },
         { id: 3, unidade: "3", date: "2023-03", energia: 200 },
@@ -49,6 +49,12 @@ export const usePlaceholderMonthData = (): void => {
       ];
 
       localStorage.setItem("monthlyData", JSON.stringify(items));
-    });
+    };
+
+    if (document.readyState === "complete") {
+      addPlaceholderData();
+    } else {
+      document.addEventListener("DOMContentLoaded", addPlaceholderData);
+    }
   }
 };

@@ -1,26 +1,17 @@
 import React, { InputHTMLAttributes, ReactNode } from "react";
-import { Input, ErrorMessage, ContainerInput } from "./InputLogin.styled";
+import { Input, Content } from "./InputLogin.styled";
 
 interface InputLoginProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: ReactNode;
-  errorMessage?: string;
-  label?: string;
-  width?: string | number;
 }
 
-const InputLogin: React.FC<InputLoginProps> = ({
-  icon,
-  errorMessage,
-  width,
-  ...props
-}) => {
+const InputLogin: React.FC<InputLoginProps> = ({icon, ...props}) => {
   return (
     <>
-      <ContainerInput errorMessage={errorMessage} style={{ width: width }}>
+      <Content>
         {icon}
-        <Input {...props}></Input>
-      </ContainerInput>
-      <ErrorMessage>{errorMessage}</ErrorMessage>
+        <Input {...props}/>
+      </Content>
     </>
   );
 };

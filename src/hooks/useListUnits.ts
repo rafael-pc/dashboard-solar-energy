@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-interface Unit {
+interface IUnit {
   id: number;
   [key: string]: string | number;
 }
 
 export const useListUnits = () => {
-  const [data, setData] = useState<Unit[]>([]);
+  const [data, setData] = useState<IUnit[]>([]);
 
   useEffect(() => {
     try {
@@ -23,7 +23,7 @@ export const useListUnits = () => {
     const items = JSON.parse(localStorage.getItem("unitsData") || "[]");
 
     if (items) {
-      const updatedItems = items.filter((item: Unit) => item.id !== id);
+      const updatedItems = items.filter((item: IUnit) => item.id !== id);
 
       localStorage.setItem("unitsData", JSON.stringify(updatedItems));
     }

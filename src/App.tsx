@@ -1,7 +1,7 @@
-import "./App.css";
+//import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GlobalStyles } from "./styles/global";
-import { theme } from "./styles/theme";
+import { theme } from "./styles";
 import { ThemeProvider } from "styled-components";
 
 import {

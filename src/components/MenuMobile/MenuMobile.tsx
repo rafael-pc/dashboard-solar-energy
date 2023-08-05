@@ -1,27 +1,25 @@
-import React from "react";
+import { FC } from "react";
 import { StyledMenu } from "./MenuMobile.styled";
 import { Link } from "react-router-dom";
 
-interface MenuMobileProps {
-  open: boolean;
-  setOpen: (open: boolean) => void;
+interface IMenuMobileProps {
+  isOpen: boolean;
   id: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const MenuMobile: React.FC<MenuMobileProps> = ({ open, setOpen, id, ...props }) => {
-  const isHidden = open ? true : false;
+const MenuMobile: FC<IMenuMobileProps> = ({ isOpen, id, ...props }) => {
+  const isHidden = isOpen ? true : false;
   const tabIndex = isHidden ? 0 : -1;
 
   return (
-    <StyledMenu open={open} aria-hidden={!isHidden} {...props}>
-      <Link to="/dashboard" className="link" tabIndex={tabIndex}>
+    <StyledMenu open={isOpen} id={id} aria-hidden={!isHidden} {...props}>
+      <Link to="/dashboard" tabIndex={tabIndex}>
         Dashboard
       </Link>
-      <Link to="/units" className="link" tabIndex={tabIndex}>
+      <Link to="/units" tabIndex={tabIndex}>
         Unidade consumidora
       </Link>
-      <Link to="/register_month" className="link" tabIndex={tabIndex}>
+      <Link to="/register_month" tabIndex={tabIndex}>
         Cadastro de enérgia gerada
       </Link>
     </StyledMenu>

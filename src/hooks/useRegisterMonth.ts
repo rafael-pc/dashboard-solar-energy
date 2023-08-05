@@ -1,30 +1,39 @@
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 
-interface Errors {
-  unidade?: string;
-  date?: string;
-  energia?: string;
-}
-
-interface Data {
+interface IData {
   unidade: string;
   date: string;
   energia: string;
 }
+interface IErrors {
+  [key: string]: string;
+}
 
-interface Unit {
+interface IUnit {
   id: number;
   [key: string]: string | number;
 }
 
-export const useRegisterMonth = () => {
-  const [erros, setErrors] = useState<Errors>({});
-  const [units, setUnits] = useState<Unit[]>([]);
-  const [open, setOpen] = useState(false);
+interface IRegisterMonthHook {
+  error: Record<string, string>;
+  units: IUnit[];
+  isOpen: boolean;
+  message: string;
+  isSuccessful: boolean;
+  setOpen: (open: boolean) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleClose: () => void;
+  handle: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+}
+
+export const useRegisterMonth = (): IRegisterMonthHook => {
+  const [error, setErrors] = useState<IErrors>({});
+  const [units, setUnits] = useState<IUnit[]>([]);
+  const [isOpen, setOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [successful, setSuccessful] = useState(false);
-  const [data, setData] = useState<Data>({
+  const [isSuccessful, setSuccessful] = useState(false);
+  const [data, setData] = useState<IData>({
     unidade: "",
     date: "",
     energia: "",
@@ -45,16 +54,16 @@ export const useRegisterMonth = () => {
     e.preventDefault();
     let idCounterUnit: number = parseInt(localStorage.getItem("idCounterUnitMonthly") || "25");
 
-    const currentErros: Errors = {};
+    const currentErros: IErrors = {};
 
     if (!data.unidade) {
-      currentErros.unidade = "Unidade é obrigatória.";
+      currentErros.unidade = "Campo unidade é obrigatório.";
     }
     if (!data.date) {
-      currentErros.date = "Data é obrigatória.";
+      currentErros.date = "Campo data é obrigatório.";
     }
     if (!data.energia) {
-      currentErros.energia = "Energia é obrigatória.";
+      currentErros.energia = "Campo energia é obrigatório.";
     }
 
     setErrors(currentErros);
@@ -125,11 +134,11 @@ export const useRegisterMonth = () => {
   }
 
   return {
-    erros,
+    error,
     units,
-    open,
+    isOpen,
     message,
-    successful,
+    isSuccessful,
     setOpen,
     handleSubmit,
     handleClose,

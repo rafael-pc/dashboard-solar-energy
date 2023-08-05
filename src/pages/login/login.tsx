@@ -1,47 +1,104 @@
+import { useEffect, useState } from "react";
 import { FaRegEnvelope, FaLock } from "react-icons/fa";
 import { Button, InputLogin } from "../../components";
+import { FiAlertCircle } from "react-icons/fi";
 import * as S from "./login.styled";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import { useLogin } from "../../hooks/useLogin";
 
 const Login = () => {
-  const { email, password, erros, handleSubmit, setEmail, setPassword } = useLogin();
+  const { email, password, error, handleSubmit, setEmail, setPassword } =
+    useLogin();
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
 
   return (
     <S.Container>
       <div className="image-content">
-        <S.Image />
+        {isLoading ? <Skeleton width={"100%"} height={"100vh"} /> : <S.Image />}
       </div>
       <S.Content>
         <div className="login-content">
-          <S.Logo />
-          <h2>Seja bem vindo</h2>
+          {isLoading ? (
+            <Skeleton
+              height={250}
+              width={250}
+              borderRadius={"0.6rem"}
+              className="skeleton-logo"
+            />
+          ) : (
+            <S.Logo />
+          )}
+          {isLoading ? (
+            <Skeleton
+              height={40}
+              width={300}
+              borderRadius={"0.6rem"}
+              className="skeleton-title"
+            />
+          ) : (
+            <h2>Seja bem vindo</h2>
+          )}
           <S.Form onSubmit={handleSubmit}>
-            <InputLogin
-              icon={<FaRegEnvelope className="icon" />}
-              type="email"
-              value={email}
-              placeholder="E-mail"
-              onChange={(event) => {
-                setEmail(event.target.value);
-              }}
-              errorMessage={erros.email}
-            ></InputLogin>
-
-            <InputLogin
-              icon={<FaLock className="icon" />}
-              type="password"
-              value={password}
-              placeholder="Senha"
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-              errorMessage={erros.password}
-            ></InputLogin>
-
-            <Button type="submit" width={"100%"}>
-              Entrar
-            </Button>
+            {isLoading ? (
+              <Skeleton
+                count={2}
+                height={80}
+                width={300}
+                borderRadius={"0.6rem"}
+              />
+            ) : (
+              <>
+                <InputLogin
+                  icon={<FaRegEnvelope className="icon" />}
+                  type="email"
+                  value={email}
+                  placeholder="Email"
+                  onChange={(event) => {
+                    setEmail(event.target.value);
+                  }}
+                />
+                {error.email && (
+                  <p>
+                    <FiAlertCircle className="icon-alert" />
+                    {error.email}
+                  </p>
+                )}
+                <InputLogin
+                  icon={<FaLock className="icon" />}
+                  type="password"
+                  value={password}
+                  placeholder="Senha"
+                  onChange={(event) => {
+                    setPassword(event.target.value);
+                  }}
+                />
+                {error.password && (
+                  <p>
+                    <FiAlertCircle className="icon-alert" />
+                    {error.password}
+                  </p>
+                )}
+              </>
+            )}
+            {isLoading ? (
+              <Skeleton
+                height={80}
+                width={300}
+                borderRadius={"0.6rem"}
+                className="skeleton-button"
+              />
+            ) : (
+              <Button className="button" disabled={isLoading}>
+                Entrar
+              </Button>
+            )}
           </S.Form>
         </div>
       </S.Content>

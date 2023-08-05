@@ -9,3 +9,4 @@ export { default as Menu } from './Menu';
 export { default as MenuMobile } from './MenuMobile';
 export { default as Select } from './Select';
 export { default as Sidebar } from './Sidebar';
+export { default as Modal } from './Modal';

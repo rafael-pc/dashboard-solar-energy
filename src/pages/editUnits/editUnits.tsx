@@ -1,39 +1,28 @@
 import { Header, Menu, Input, Button, Sidebar } from "../../components";
-import { Modal, Box, Collapse, IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import Alert from "@mui/material/Alert";
+import { useEdit } from "../../hooks/useEdit";
+import { FiAlertCircle } from "react-icons/fi";
 import * as S from "./editUnits.styled";
 
-import { useEdit } from "../../hooks/useEdit";
+import { Modal } from "../../components";
 
 const EditUnits = () => {
   const {
-    erros,
-    statusChecked,
-    open,
-    isMessage,
-    successful,
+    error,
+    isChecked,
+    isOpen,
+    message,
+    isSuccessful,
     data,
     setOpen,
-    setStatusChecked,
+    setChecked,
     handleSubmit,
     handleClose,
     handle,
   } = useEdit();
 
-  const BoxStyled = {
-    position: "absolute",
-    top: "8%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 350,
-  };
-
   return (
     <S.Container>
-      <div className="sidebar">
-        <Sidebar />
-      </div>
+      <Sidebar />
       <Menu />
       <S.Content>
         <Header title="Unidades"></Header>
@@ -47,9 +36,13 @@ const EditUnits = () => {
               type="text"
               value={data.apelido}
               onChange={(e) => handle(e)}
-              errorMessage={erros.apelido}
-            ></Input>
-
+            />
+            {error.apelido && (
+              <p>
+                <FiAlertCircle className="icon-alert" />
+                {error.apelido}
+              </p>
+            )}
             <Input
               id="local"
               title="local"
@@ -57,9 +50,13 @@ const EditUnits = () => {
               type="text"
               value={data.local}
               onChange={(e) => handle(e)}
-              errorMessage={erros.local}
-            ></Input>
-
+            />
+            {error.local && (
+              <p>
+                <FiAlertCircle className="icon-alert" />
+                {error.local}
+              </p>
+            )}
             <Input
               id="marca"
               title="marca"
@@ -67,9 +64,13 @@ const EditUnits = () => {
               type="text"
               value={data.marca}
               onChange={(e) => handle(e)}
-              errorMessage={erros.marca}
-            ></Input>
-
+            />
+            {error.marca && (
+              <p>
+                <FiAlertCircle className="icon-alert" />
+                {error.marca}
+              </p>
+            )}
             <Input
               id="modelo"
               title="modelo"
@@ -78,71 +79,33 @@ const EditUnits = () => {
               style={{ width: "50%" }}
               value={data.modelo}
               onChange={(e) => handle(e)}
-              errorMessage={erros.modelo}
-            ></Input>
-
+            />
+            {error.modelo && (
+              <p>
+                <FiAlertCircle className="icon-alert" />
+                {error.modelo}
+              </p>
+            )}
             <label>
               <input
-                checked={statusChecked}
-                onChange={(e) => setStatusChecked(e.target.checked)}
+                checked={isChecked}
+                onChange={(e) => setChecked(e.target.checked)}
                 type="checkbox"
                 id="status"
               />
               ativo
             </label>
-            
-            <Button type="submit" className="button" width={"100%"}>
-              Salvar
-            </Button>
+            <Button className="button">Salvar</Button>
           </S.Form>
         </S.FormContainer>
-        {isMessage && (
+        {message && (
           <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={BoxStyled}>
-              <Collapse in={open}>
-                {successful ? (
-                  <Alert
-                    severity="success"
-                    action={
-                      <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={handleClose}
-                      >
-                        <CloseIcon fontSize="inherit" />
-                      </IconButton>
-                    }
-                  >
-                    {isMessage}
-                  </Alert>
-                ) : (
-                  <Alert
-                    severity="error"
-                    action={
-                      <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={() => {
-                          setOpen(false);
-                        }}
-                      >
-                        <CloseIcon fontSize="inherit" />
-                      </IconButton>
-                    }
-                  >
-                    {isMessage}
-                  </Alert>
-                )}
-              </Collapse>
-            </Box>
-          </Modal>
+            isOpen={isOpen}
+            message={message}
+            isSuccessful={isSuccessful}
+            setOpen={setOpen}
+            handleClose={handleClose}
+          />
         )}
       </S.Content>
     </S.Container>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as yup from "yup";
 
-interface Data {
+interface IData {
   apelido: string;
   local: string;
   marca: string;
@@ -10,55 +10,42 @@ interface Data {
   status: string;
 }
 
-interface Unit {
+interface IUnit extends IData{
   id: number;
-  apelido: string;
-  local: string;
-  marca: string;
-  modelo: string;
-  status: string;
 }
 
-interface AddressSchema {
+interface IAddressSchema {
   apelido: string;
   local: string;
   marca: string;
   modelo: number;
 }
 
-interface EditData {
-  apelido: string;
-  local: string;
-  marca: string;
-  modelo: string;
-  status: string;
-}
-
-interface Errors {
+interface IErrors {
   [key: string]: string;
 }
 
-interface EditHook {
-  erros: Record<string, string>;
-  statusChecked: boolean;
-  open: boolean;
-  isMessage: string;
-  successful: boolean;
-  data: EditData;
-  setOpen: (open: boolean) => void;
-  setStatusChecked: (checked: boolean) => void;
+interface IEditHook {
+  error: Record<string, string>;
+  isChecked: boolean;
+  isOpen: boolean;
+  message: string;
+  isSuccessful: boolean;
+  data: IData;
+  setOpen: (isOpen: boolean) => void;
+  setChecked: (isChecked: boolean) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   handleClose: () => void;
   handle: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const useEdit = (): EditHook => {
-  const [erros, setErrors] = useState<Errors>({});
-  const [statusChecked, setStatusChecked] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [isMessage, setIsMessage] = useState("");
-  const [successful, setSuccessful] = useState(false);
-  const [data, setData] = useState<Data>({
+export const useEdit = (): IEditHook => {
+  const [error, setError] = useState<IErrors>({});
+  const [isChecked, setChecked] = useState(false);
+  const [isOpen, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isSuccessful, setSuccessful] = useState(false);
+  const [data, setData] = useState<IData>({
     apelido: "",
     local: "",
     marca: "",
@@ -70,16 +57,16 @@ export const useEdit = (): EditHook => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("unitsData") || "[]") as Unit[];
+    const storedData = JSON.parse(localStorage.getItem("unitsData") || "[]") as IUnit[];
     if (storedData && typeof id === "string") {
       const parsedId = id ? parseInt(id) : undefined;
       const unit = storedData.find((item: { id: number }) => item.id === parsedId);
       if (unit) {
         try {
           setData(unit);
-          setStatusChecked(unit.status === "ativo");
-        } catch (error) {
-          console.error("Error parsing JSON:", error);
+          setChecked(unit.status === "ativo");
+        } catch (erro) {
+          console.error("Error parsing JSON:", erro);
         }
       }
     }
@@ -87,32 +74,32 @@ export const useEdit = (): EditHook => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const currentErros: Errors = {};
+    const currentErros: IErrors = {};
 
     if (!data.apelido) {
-      currentErros.apelido = "Apelido é obrigatório.";
+      currentErros.apelido = "Campo apelido é obrigatório.";
     }
     if (!data.local) {
-      currentErros.local = "Local é obrigatório.";
+      currentErros.local = "Campo local é obrigatório.";
     }
     if (!data.marca) {
-      currentErros.marca = "Marca é obrigatória.";
+      currentErros.marca = "Campo marca é obrigatório.";
     }
     if (!data.modelo) {
-      currentErros.modelo = "Modelo é obrigatório.";
+      currentErros.modelo = "Campo modelo é obrigatório.";
     }
 
-    setErrors(currentErros);
+    setError(currentErros);
 
     const addressFormData = {
       apelido: data.apelido,
       local: data.local,
       marca: data.marca,
       modelo: parseInt(data.modelo),
-      status: statusChecked ? "ativo" : "inativo",
+      status: isChecked ? "ativo" : "inativo",
     };
 
-    const addressSchema: yup.ObjectSchema<AddressSchema> = yup.object().shape({
+    const addressSchema: yup.ObjectSchema<IAddressSchema> = yup.object().shape({
       apelido: yup.string().required(),
       local: yup.string().required(),
       marca: yup.string().required(),
@@ -122,7 +109,7 @@ export const useEdit = (): EditHook => {
     addressSchema.isValid(addressFormData).then((valid) => {
       try {
         if (valid === true && typeof id === "string") {
-          const storedData = JSON.parse(localStorage.getItem("unitsData") || "[]") as Unit[];
+          const storedData = JSON.parse(localStorage.getItem("unitsData") || "[]") as IUnit[];
           if (storedData) {
             const updatedData = storedData.map((item) => {
               if (item.id === parseInt(id)) {
@@ -140,7 +127,7 @@ export const useEdit = (): EditHook => {
             localStorage.setItem("unitsData", JSON.stringify(updatedData));
 
             setOpen(true);
-            setIsMessage("Unidade editada com sucesso!");
+            setMessage("Unidade editada com sucesso!");
             setSuccessful(true);
           } else {
             setSuccessful(false);
@@ -171,14 +158,14 @@ export const useEdit = (): EditHook => {
   };
 
   return {
-    erros,
-    statusChecked,
-    open,
-    isMessage,
-    successful,
+    error,
+    isChecked,
+    isOpen,
+    message,
+    isSuccessful,
     data,
     setOpen,
-    setStatusChecked,
+    setChecked,
     handleSubmit,
     handleClose,
     handle,

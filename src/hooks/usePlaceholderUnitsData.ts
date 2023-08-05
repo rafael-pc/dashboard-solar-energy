@@ -1,4 +1,4 @@
-interface Unit {
+interface IUnit {
   id: number;
   apelido: string;
   local: string;
@@ -8,13 +8,13 @@ interface Unit {
 }
 
 export const usePlaceholderUnitsData = () => {
-  const data: Unit[] = JSON.parse(localStorage.getItem("unitsData") || "[]");
-  const ids: number[] = data.map((item: Unit) => item.id);
-  const hasIdGreater: boolean = ids.some((id) => id < 5);
+  const data: IUnit[] = JSON.parse(localStorage.getItem("unitsData") || "[]");
+  const ids: number[] = data.map((item: IUnit) => item.id);
+  const hasId: boolean = ids.some((id) => id < 5);
 
-  if (!hasIdGreater) {
-    document.addEventListener("DOMContentLoaded", () => {
-      const items: Unit[] = [
+  if (!hasId) {
+    const addPlaceholderData = () => {
+      const items: IUnit[] = [
         {
           id: 1,
           apelido: "Painel 1",
@@ -58,6 +58,12 @@ export const usePlaceholderUnitsData = () => {
       ];
 
       localStorage.setItem("unitsData", JSON.stringify(items));
-    });
+    };
+
+    if (document.readyState === "complete") {
+      addPlaceholderData();
+    } else {
+      document.addEventListener("DOMContentLoaded", addPlaceholderData);
+    }
   }
 }

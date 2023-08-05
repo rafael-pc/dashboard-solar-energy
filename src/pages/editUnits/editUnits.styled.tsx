@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { theme } from "../../styles/theme";
+import { theme } from "../../styles";
 
 export const Container = styled.div`
   display: flex;
   width: 100vw;
   height: 100vh;
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: ${theme.screen.mobile}) {
     flex-direction: column;
   }
 `;
@@ -19,18 +19,18 @@ export const Content = styled.div`
   overflow-y: auto;
 
   h3 {
-    font-size: 1.3em;
-    font-weight: bold;
+    font-size: ${theme.font.sizes.xxs};
+    font-weight: ${theme.font.bold};
     padding: 20px;
     margin-top: 35px;
   }
 
-  @media only screen and (max-width: 641px) {
+  @media only screen and (max-width: ${theme.screen.mobile}) {
     width: 100vw;
 
     h3 {
       width: 90%;
-      font-size: 1.1rem;
+      font-size: ${theme.font.sizes.xxs};
       padding: 15px;
       text-align: center;
       margin-left: 0;
@@ -44,10 +44,10 @@ export const Content = styled.div`
     }
   }
 
-  @media only screen and (max-height: 420px) {
+  @media only screen and (max-height: ${theme.screen.mobile}) {
     h3 {
       margin-top: 10px;
-      font-size: 1.1rem;
+      font-size: ${theme.font.sizes.xxxs};
     }
   }
 `;
@@ -55,7 +55,7 @@ export const Content = styled.div`
 export const FormContainer = styled.div`
   margin-left: 5%;
 
-  @media only screen and (max-width: 641px) {
+  @media only screen and (max-width: ${theme.screen.mobile}) {
     width: 95%;
     margin-left: 0;
     margin: 0 auto;
@@ -65,25 +65,35 @@ export const FormContainer = styled.div`
 export const Form = styled.form`
   width: 40%;
   padding: 20px;
+  font-family: ${theme.font.family.secondary};
+
+  p {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 3px;
+    padding-left: 0;
+    gap: 5px;
+    color: ${theme.colors.error};
+    font-size: ${theme.font.sizes.xxxxs};
+  }
 
   label {
-    font-family: ${theme.font.input};
-    font-size: 1rem;
+    font-size: ${theme.font.sizes.xxxs};
     display: inline-block;
     margin-top: 15px;
     vertical-align: middle;
     padding: 6px 6px 6px 0;
-    //color: #3a3a3a;
   }
 
   input[type="checkbox"] {
     width: 16px;
     height: 16px;
-    margin-right: 8px;
+    margin-right: 6px;
     vertical-align: middle;
   }
 
-  @media only screen and (max-width: 1008px) {
+  @media only screen and (max-width: ${theme.screen.desktop}) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -91,7 +101,7 @@ export const Form = styled.form`
     width: 60%;
   }
 
-  @media only screen and (max-width: 641px) {
+  @media only screen and (max-width: ${theme.screen.mobile}) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -105,7 +115,7 @@ export const Form = styled.form`
       margin-bottom: 50px;
     }
   }
-  @media only screen and (max-height: 420px) {
-    font-size: 0.9rem;
+  @media only screen and (max-height: ${theme.screen.mobile}) {
+    font-size: ${theme.font.sizes.xxxxs};
   }
 `;

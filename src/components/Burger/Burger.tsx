@@ -1,20 +1,20 @@
-import React from "react";
+import { FC } from "react";
 import * as S from "./Burger.styled";
 
-interface BurgerProps {
-  open: boolean;
-  setOpen: (open: boolean) => void;
+interface IBurgerProps {
+  isOpen: boolean;
+  setOpen: (isOpen: boolean) => void;
 }
 
-const Burger: React.FC<BurgerProps> = ({ open, setOpen, ...props }) => {
-  const isExpanded = open ? true : false;
+const Burger: FC<IBurgerProps> = ({ isOpen, setOpen, ...props }) => {
+  const isExpanded = isOpen ? true : false;
 
   return (
     <S.Burger
       aria-label="Toggle menu"
       aria-expanded={isExpanded}
-      open={open}
-      onClick={() => setOpen(!open)}
+      open={isOpen}
+      onClick={() => setOpen(!isOpen)}
       {...props}
     >
       <span />

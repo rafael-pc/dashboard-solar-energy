@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { theme } from "../../styles/theme";
+import { theme } from "../../styles";
 
 export const Container = styled.div`
   display: flex;
   width: 100vw;
   height: 100vh;
 
-  @media only screen and (max-width: 641px) {
+  @media only screen and (max-width: ${theme.screen.mobile}) {
     flex-direction: column;
   }
 `;
@@ -16,37 +16,14 @@ export const Content = styled.div`
   flex-direction: column;
   width: 80%;
   height: 100vh;
-  //background-color: ${theme.colors.neutral_200};
   display: block;
   overflow-y: auto;
   white-space: nowrap;
 
-  .link {
-    width: 120px;
-    //margin: 0 auto;
-    margin-top: 100px;
-    border-radius: 15px;
-
-    @media only screen and (max-width: 1600px) {
-      display: block;
-      margin-left: 0;
-      margin: 0 auto;
-      margin-bottom: 80px;
-      margin-top: 80px;
-    }
-
-    @media only screen and (max-width: 641px) {
-      display: block;
-      margin-left: 0;
-      margin: 0 auto;
-      margin-bottom: 80px;
-    }
-  }
-
   h3 {
     margin: 0 auto;
-    font-size: 1.4em;
-    font-weight: bold;
+    font-size: ${theme.font.sizes.xxs};
+    font-weight: ${theme.font.bold};
     margin-top: 40px;
     margin-bottom: 50px;
     text-align: center;
@@ -54,18 +31,35 @@ export const Content = styled.div`
     color: ${theme.colors.dark};
   }
 
-  @media only screen and (max-width: 641px) {
+  .link {
+    display: block;
+    margin-left: 0;
+    margin: 0 auto;
+    margin-bottom: 80px;
+
+    button {
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+
+    @media only screen and (max-width: ${theme.screen.mobile}) {
+      margin-bottom: 80px;
+    }
+  }
+
+  @media only screen and (max-width: ${theme.screen.mobile}) {
     width: 100vw;
+
     h3 {
-      font-size: 1.1rem;
+      font-size: ${theme.font.sizes.xxxs};
       margin-left: 0;
       text-align: center;
     }
   }
 
-  @media only screen and (max-height: 420px) {
+  @media only screen and (max-height: ${theme.screen.mobile}) {
     h3 {
-      font-size: 1.1rem;
+      font-size: ${theme.font.sizes.xxxs};
       margin-top: 15px;
       margin-bottom: 20px;
     }
@@ -73,24 +67,25 @@ export const Content = styled.div`
 `;
 
 export const Table = styled.table`
-  width: 60%;
+  width: 70%;
   margin: 0 auto;
-  font-size: 0.9em;
-  font-weight: bold;
-  background-color: #fff;
-  border: 1px solid #d0d0d0;
+  font-size: ${theme.font.sizes.xxxs};
+  font-family: ${theme.font.family.secondary};
+  background-color: ${theme.colors.neutral_100};
+  border: 1px solid ${theme.colors.neutral_400};
 
   tr:nth-child(odd) {
     background-color: ${theme.colors.neutral_300};
   }
 
   th {
+    font-weight: ${theme.font.normal};
     padding: 6px;
     background-color: ${theme.colors.bg_primary};
     color: ${theme.colors.neutral_100};
   }
 
-  @media only screen and (max-width: 641px) {
+  @media only screen and (max-width: ${theme.screen.mobile}) {
     width: 90%;
     display: block;
     overflow-x: auto;
@@ -98,18 +93,17 @@ export const Table = styled.table`
     margin-bottom: 80px;
   }
 
-  @media only screen and (max-height: 420px) {
+  @media only screen and (max-height: ${theme.screen.mobile}) {
     width: 90%;
 
     th {
-      font-size: 0.8rem;
+      font-size: ${theme.font.sizes.xxxxs};
       padding: 4px;
     }
   }
 `;
 
 export const Row = styled.tr`
-
   td {
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -118,9 +112,9 @@ export const Row = styled.tr`
     padding: 4px;
   }
 
-  @media only screen and (max-height: 420px) {
+  @media only screen and (max-height: ${theme.screen.mobile}) {
     td {
-      font-size: 0.8rem;
+      font-size: ${theme.font.sizes.xxxxs};
       padding: 3px;
     }
   }
@@ -130,18 +124,17 @@ export const Edit = styled.button`
   border: none;
   width: 60px;
   padding: 5px;
-  border-radius: 3px;
-  color: #fff;
-  font-weight: bold;
+  border-radius: ${theme.border.radius.xs};
+  color: ${theme.colors.neutral_100};
+  font-weight: ${theme.font.bold};
   background-color: ${theme.colors.bt_edit};
 
   &:hover {
     background-color: ${theme.colors.bt_edit_hover};
   }
 
-  @media only screen and (max-height: 420px) {
-    border-radius: 2px;
-    font-size: 0.9em;
+  @media only screen and (max-height: ${theme.screen.mobile}) {
+    font-size: ${theme.font.sizes.xxxxs};
   }
 `;
 
@@ -149,17 +142,16 @@ export const Delete = styled.button`
   border: none;
   width: 60px;
   padding: 5px;
-  border-radius: 3px;
+  border-radius: ${theme.border.radius.xs};
   color: ${theme.colors.neutral_100};
-  font-weight: bold;
+  font-weight: ${theme.font.bold};
   background-color: ${theme.colors.bt_delete};
 
   &:hover {
     background-color: ${theme.colors.bt_delete_hover};
   }
 
-  @media only screen and (max-height: 420px) {
-    border-radius: 2px;
-    font-size: 0.9em;
+  @media only screen and (max-height: ${theme.screen.mobile}) {
+    font-size: ${theme.font.sizes.xxxxs};
   }
 `;

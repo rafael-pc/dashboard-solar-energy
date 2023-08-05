@@ -1,31 +1,23 @@
 import { Header, Menu, Input, Button, Sidebar } from "../../components";
-import * as S from "./registerUnits.styled";
-import { Modal, Box, Collapse, IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import Alert from "@mui/material/Alert";
 import { useRegisterUnits } from "../../hooks/useRegisterUnits";
+import * as S from "./registerUnits.styled";
+import { FiAlertCircle } from "react-icons/fi";
+
+import { Modal } from "../../components";
 
 const RegisterUnits = () => {
   const {
-    erros,
+    error,
     statusChecked,
-    open,
+    isOpen,
     message,
-    successful,
+    isSuccessful,
     setOpen,
     setStatusChecked,
     handleSubmit,
     handleClose,
     handle,
   } = useRegisterUnits();
-
-  const BoxStyled = {
-    position: "absolute",
-    top: "8%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 350,
-  };
 
   return (
     <S.Container>
@@ -43,8 +35,13 @@ const RegisterUnits = () => {
               placeholder="Digite o apelido"
               type="text"
               onChange={(e) => handle(e)}
-              errorMessage={erros.apelido}
-            ></Input>
+            />
+            {error.apelido && (
+              <p>
+                <FiAlertCircle className="icon-alert" />
+                {error.apelido}
+              </p>
+            )}
             <Input
               id="local"
               title="local"
@@ -52,8 +49,13 @@ const RegisterUnits = () => {
               placeholder="Digite o local"
               type="text"
               onChange={(e) => handle(e)}
-              errorMessage={erros.local}
-            ></Input>
+            />
+            {error.local && (
+              <p>
+                <FiAlertCircle className="icon-alert" />
+                {error.local}
+              </p>
+            )}
             <Input
               id="marca"
               title="marca"
@@ -61,8 +63,13 @@ const RegisterUnits = () => {
               placeholder="Digite a marca"
               type="text"
               onChange={(e) => handle(e)}
-              errorMessage={erros.marca}
-            ></Input>
+            />
+            {error.marca && (
+              <p>
+                <FiAlertCircle className="icon-alert" />
+                {error.marca}
+              </p>
+            )}
             <Input
               id="modelo"
               title="modelo"
@@ -71,9 +78,13 @@ const RegisterUnits = () => {
               placeholder="Digite o modelo"
               type="text"
               onChange={(e) => handle(e)}
-              errorMessage={erros.modelo}
-            ></Input>
-
+            />
+            {error.modelo && (
+              <p>
+                <FiAlertCircle className="icon-alert" />
+                {error.modelo}
+              </p>
+            )}
             <label>
               <input
                 type="checkbox"
@@ -83,58 +94,17 @@ const RegisterUnits = () => {
               />
               ativo
             </label>
-            <Button type="submit" className="button" width={"100%"}>
-              Salvar
-            </Button>
+            <Button className="button">Salvar</Button>
           </S.Form>
         </S.FormContainer>
         {message && (
           <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={BoxStyled}>
-              <Collapse in={open}>
-                {successful ? (
-                  <Alert
-                    severity="success"
-                    action={
-                      <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={handleClose}
-                      >
-                        <CloseIcon fontSize="inherit" />
-                      </IconButton>
-                    }
-                  >
-                    {message}
-                  </Alert>
-                ) : (
-                  <Alert
-                    severity="error"
-                    action={
-                      <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={() => {
-                          setOpen(false);
-                        }}
-                      >
-                        <CloseIcon fontSize="inherit" />
-                      </IconButton>
-                    }
-                  >
-                    {message}
-                  </Alert>
-                )}
-              </Collapse>
-            </Box>
-          </Modal>
+            isOpen={isOpen}
+            message={message}
+            isSuccessful={isSuccessful}
+            setOpen={setOpen}
+            handleClose={handleClose}
+          />
         )}
       </S.Content>
     </S.Container>

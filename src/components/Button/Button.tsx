@@ -1,14 +1,16 @@
-import React from "react";
+import { FC } from "react";
 import * as S from "./Button.styled";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  width: string | number;
+interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
-
-const Button: React.FC<ButtonProps> = ({ width, children, ...props }) => {
-  return <S.Button style={{ width: width }} {...props}>{children}</S.Button>;
+const Button: FC<IButtonProps> = ({ children, ...props }) => {
+  return (
+    <S.Button type="submit"{...props}>
+      {children}
+    </S.Button>
+  );
 };
 
 export default Button;

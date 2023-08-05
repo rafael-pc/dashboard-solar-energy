@@ -2,28 +2,37 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
-interface Errors {
-  apelido?: string;
-  local?: string;
-  marca?: string;
-  modelo?: string;
-}
-
-interface Data {
+interface IData {
   apelido: string;
   local: string;
   marca: string;
   modelo: string;
   status: string;
 }
+interface IErrors {
+  [key: string]: string;
+}
 
-export const useRegisterUnits = () => {
-  const [erros, setErrors] = useState<Errors>({});
+interface IRegisterUnitsHook {
+  error: Record<string, string>;
+  statusChecked: boolean;
+  isOpen: boolean;
+  message: string;
+  isSuccessful: boolean;
+  setOpen: (isOpen: boolean) => void;
+  setStatusChecked: (checked: boolean) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleClose: () => void;
+  handle: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export const useRegisterUnits = (): IRegisterUnitsHook => {
+  const [error, setError] = useState<IErrors>({});
   const [statusChecked, setStatusChecked] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [successful, setSuccessful] = useState(false);
-  const [data, setData] = useState<Data>({
+  const [isSuccessful, setSuccessful] = useState(false);
+  const [data, setData] = useState<IData>({
     apelido: "",
     local: "",
     marca: "",
@@ -33,24 +42,23 @@ export const useRegisterUnits = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    //let idCounterUnit = localStorage.getItem("idCounterUnit") || 6;
     let idCounterUnit: number = parseInt(localStorage.getItem("idCounterUnit") || "6");
 
-    const currentErros: Errors = {};
+    const currentErros: IErrors = {};
 
     if (!data.apelido) {
-      currentErros.apelido = "Apelido é obrigatório.";
+      currentErros.apelido = "Campo apelido é obrigatório.";
     }
     if (!data.local) {
-      currentErros.local = "Local é obrigatório.";
+      currentErros.local = "Campo local é obrigatório.";
     }
     if (!data.marca) {
-      currentErros.marca = "Marca é obrigatória.";
+      currentErros.marca = "Campo marca é obrigatório.";
     }
     if (!data.modelo) {
-      currentErros.modelo = "Modelo é obrigatório.";
+      currentErros.modelo = "Campo modelo é obrigatório.";
     }
-    setErrors(currentErros);
+    setError(currentErros);
 
     const addressFormData = {
       id: idCounterUnit++,
@@ -116,11 +124,11 @@ export const useRegisterUnits = () => {
   }
 
   return {
-    erros,
+    error,
     statusChecked,
-    open,
+    isOpen,
     message,
-    successful,
+    isSuccessful,
     setOpen,
     setStatusChecked,
     handleSubmit,

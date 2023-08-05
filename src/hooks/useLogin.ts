@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
-interface Errors {
+interface IError {
   email?: string;
   password?: string;
 }
 
-interface AddressSchema {
+interface IAddressSchema {
   email: string;
   password: string;
 }
@@ -15,20 +15,20 @@ interface AddressSchema {
 export const useLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [erros, setErrors] = useState<Errors>({});
+  const [error, setError] = useState<IError>({});
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const currentErros: Errors = {};
+    const currentErros: IError = {};
 
     if (!email) {
-      currentErros.email = "E-mail é obrigatório.";
+      currentErros.email = "Campo email é obrigatório.";
     }
     if (!password) {
-      currentErros.password = "Senha é obrigatória.";
+      currentErros.password = "Campo senha é obrigatório.";
     }
 
-    setErrors(currentErros);
+    setError(currentErros);
 
     const addressFormData = {
       email: email,
@@ -48,7 +48,7 @@ export const useLogin = () => {
 
   const history = useNavigate();
 
-  const addressSchema: yup.ObjectSchema<AddressSchema> = yup.object().shape({
+  const addressSchema: yup.ObjectSchema<IAddressSchema> = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().required(),
   });
@@ -56,7 +56,7 @@ export const useLogin = () => {
   return {
     email,
     password,
-    erros,
+    error,
     setEmail,
     setPassword,
     handleSubmit,

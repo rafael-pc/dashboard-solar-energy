@@ -3,10 +3,6 @@ import { Header, Menu, Button, Sidebar } from "../../components";
 import { useListUnits } from "../../hooks/useListUnits";
 import * as S from "./listUnits.styled";
 
-import { usePlaceholderUnitsData } from "../../hooks/usePlaceholderUnitsData";
-
-usePlaceholderUnitsData();
-
 const ListUnits = () => {
   const { data, removeItemFromLocalStorage } = useListUnits();
 
@@ -62,7 +58,7 @@ const ListUnits = () => {
           </tbody>
         </S.Table>
         <Link to="/register_units/" className="link">
-          <Button type="submit" className="button" width={"100%"}>
+          <Button>
             Nova Unidade
           </Button>
         </Link>

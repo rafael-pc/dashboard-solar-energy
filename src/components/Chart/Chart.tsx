@@ -1,24 +1,22 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import React, { useState, useEffect } from "react";
-import { ContainerChart } from "./Chart.styled";
+import { FC, useState, useEffect } from "react";
+import * as S from "./Chart.styled";
 import { Line } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 Chart.register(...registerables);
 
-interface DataItem {
+interface IDataItem {
   date: string;
   energia: number;
 }
 
-const Linechart: React.FC = () => {
-  const [data, setData] = useState<DataItem[]>([]);
+const Linechart: FC = () => {
+  const [data, setData] = useState<IDataItem[]>([]);
 
   useEffect(() => {
     const generationData = localStorage.getItem("monthlyData") || "[]";
     try {
-      setData(JSON.parse(generationData) as DataItem[]);
+      setData(JSON.parse(generationData) as IDataItem[]);
     } catch (error) {
       console.error("Error parsing JSON:", error);
     }
@@ -47,7 +45,7 @@ const Linechart: React.FC = () => {
   ];
 
   return (
-    <ContainerChart>
+    <S.ContainerChart>
       <Line
         className="line"
         data={{
@@ -68,7 +66,7 @@ const Linechart: React.FC = () => {
           maintainAspectRatio: false,
         }}
       ></Line>
-    </ContainerChart>
+    </S.ContainerChart>
   );
 };
 

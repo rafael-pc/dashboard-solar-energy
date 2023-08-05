@@ -1,24 +1,12 @@
-import React, { SelectHTMLAttributes } from "react";
-import { Input, ErrorMessage } from "./Select.styled";
+import { FC, SelectHTMLAttributes } from "react";
+import { InputSelect } from "./Select.styled";
 
-interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  errorMessage?: string;
-  label?: string;
-  width?: string | number;
+interface ISelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  props?: unknown;
 }
 
-const Select: React.FC<SelectProps> = ({ errorMessage, label, width, ...props }) => {
-  return (
-    <>
-      {label && <label>{label}</label>}
-      <Input
-        errorMessage={errorMessage}
-        style={{ width: width }}
-        {...props}
-      ></Input>
-      <ErrorMessage>{errorMessage}</ErrorMessage>
-    </>
-  );
+const Select: FC<ISelectProps> = ({ ...props }) => {
+  return <InputSelect {...props}/>;
 };
 
 export default Select;

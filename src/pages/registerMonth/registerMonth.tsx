@@ -1,43 +1,29 @@
 import { Menu, Header, Input, Select, Button, Sidebar } from "../../components";
-import { Modal, Box, Collapse, IconButton } from "@mui/material";
 import { useRegisterMonth } from "../../hooks/useRegisterMonth";
+import { FiAlertCircle } from "react-icons/fi";
 import * as S from "./registerMonth.styled";
-import CloseIcon from "@mui/icons-material/Close";
-import Alert from "@mui/material/Alert";
 
-import { usePlaceholderMonthData } from "../../hooks/usePlaceholderMonthData";
-
-usePlaceholderMonthData();
+import { Modal } from "../../components";
 
 const RegisterMonth = () => {
   const {
-    erros,
+    error,
     units,
-    open,
+    isOpen,
     message,
-    successful,
+    isSuccessful,
     setOpen,
     handleSubmit,
     handleClose,
     handle,
   } = useRegisterMonth();
 
-  const BoxStyled = {
-    position: "absolute",
-    top: "8%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 350,
-  };
-
   return (
     <S.Container>
       <Sidebar />
       <Menu />
       <S.Content>
-        <Header
-          title="Lançamento de geração mensal"
-        ></Header>
+        <Header title="Lançamento de geração mensal" />
         <S.FormContainer>
           <h3>Unidade Geradora</h3>
           <S.Form
@@ -50,7 +36,6 @@ const RegisterMonth = () => {
               className="select"
               defaultValue=""
               onChange={(e) => handle(e)}
-              errorMessage={erros.unidade}
               id="unidade"
             >
               <option value="" disabled>
@@ -70,7 +55,12 @@ const RegisterMonth = () => {
                 </tr>
               )}
             </Select>
-
+            {error.unidade && (
+              <p>
+                <FiAlertCircle className="icon-alert" />
+                {error.unidade}
+              </p>
+            )}
             <Input
               id="date"
               title="date"
@@ -78,9 +68,13 @@ const RegisterMonth = () => {
               type="month"
               className="date"
               onChange={(e) => handle(e)}
-              errorMessage={erros.date}
-            ></Input>
-
+            />
+            {error.date && (
+              <p>
+                <FiAlertCircle className="icon-alert" />
+                {error.date}
+              </p>
+            )}
             <Input
               id="energia"
               title="energia"
@@ -89,61 +83,26 @@ const RegisterMonth = () => {
               type="text"
               className="energia"
               onChange={(e) => handle(e)}
-              errorMessage={erros.energia}
-            ></Input>
-
-            <Button type="submit" className="button" width={"100%"}>
+            />
+            {error.energia && (
+              <p>
+                <FiAlertCircle className="icon-alert" />
+                {error.energia}
+              </p>
+            )}
+            <Button type="submit" className="button">
               Cadastrar
             </Button>
           </S.Form>
         </S.FormContainer>
         {message && (
           <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={BoxStyled}>
-              <Collapse in={open}>
-                {successful ? (
-                  <Alert
-                    severity="success"
-                    action={
-                      <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={handleClose}
-                      >
-                        <CloseIcon fontSize="inherit" />
-                      </IconButton>
-                    }
-                  >
-                    {message}
-                  </Alert>
-                ) : (
-                  <Alert
-                    severity="error"
-                    action={
-                      <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={() => {
-                          setOpen(false);
-                        }}
-                      >
-                        <CloseIcon fontSize="inherit" />
-                      </IconButton>
-                    }
-                  >
-                    {message}
-                  </Alert>
-                )}
-              </Collapse>
-            </Box>
-          </Modal>
+            isOpen={isOpen}
+            message={message}
+            isSuccessful={isSuccessful}
+            setOpen={setOpen}
+            handleClose={handleClose}
+          />
         )}
       </S.Content>
     </S.Container>
@@ -151,4 +110,3 @@ const RegisterMonth = () => {
 };
 
 export default RegisterMonth;
-

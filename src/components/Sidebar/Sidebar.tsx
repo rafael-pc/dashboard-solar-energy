@@ -1,42 +1,42 @@
-import React from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import { FaChartPie, FaChartBar, FaCog } from "react-icons/fa";
-import { Container, Content, Logo, Menu, Page } from "./Sidebar.styled";
+import * as S from "./Sidebar.styled";
 import LogoMobile from "../../assets/logoMobile.png";
 import LogoImage from "../../assets/logo.png";
 
-const Sidebar: React.FC = () => {
+const Sidebar: FC = () => {
   return (
-    <Container>
-      <Content>
+    <S.Container>
+      <S.Content>
         <nav>
           <Link to="/dashboard" className="link">
-            <Logo src={LogoMobile} alt="logo" className="logo-mobile"></Logo>
+            <S.Logo src={LogoMobile} alt="logo" className="logo-mobile"/>
           </Link>
-          <Menu>
-            <Logo src={LogoImage} alt="logo" className="logo"></Logo>
-            <Page>
+          <S.Menu>
+            <S.Logo src={LogoImage} alt="logo" className="logo"/>
+            <S.Page>
               <Link to="/dashboard" className="link">
                 <FaChartPie className="chart-pie" />
                 <h3>Dashboard</h3>
               </Link>
-            </Page>
-            <Page>
+            </S.Page>
+            <S.Page>
               <Link to="/units" className="link">
                 <FaChartBar className="chart-bar" />
                 <h3>Unidade consumidora</h3>
               </Link>
-            </Page>
-            <Page>
+            </S.Page>
+            <S.Page>
               <Link to="/register_month" className="link">
                 <FaCog className="cog" />
                 <h3>Cadastro de enérgia gerada</h3>
               </Link>
-            </Page>
-          </Menu>
+            </S.Page>
+          </S.Menu>
         </nav>
-      </Content>
-    </Container>
+      </S.Content>
+    </S.Container>
   );
 };
 

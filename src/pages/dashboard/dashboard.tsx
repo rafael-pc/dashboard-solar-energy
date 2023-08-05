@@ -2,7 +2,12 @@ import { Cards, Menu, Chart, Header, Sidebar } from "../../components";
 import { useDashboard } from "../../hooks/useDashboard";
 import * as S from "./dashboard.styled";
 
+import { usePlaceholderUnitsData } from "../../hooks/usePlaceholderUnitsData";
+import { usePlaceholderMonthData } from "../../hooks/usePlaceholderMonthData";
+
 const Dashboard = () => {
+  usePlaceholderUnitsData();
+  usePlaceholderMonthData();
   const { units, generation } = useDashboard();
   
   return (
