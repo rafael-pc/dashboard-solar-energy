@@ -5,14 +5,12 @@ interface InputLoginProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: ReactNode;
 }
 
-const InputLogin: React.FC<InputLoginProps> = ({icon, ...props}) => {
+const InputLogin: React.FC<InputLoginProps> = ({ icon, ...props }) => {
   return (
-    <>
-      <Content>
-        {icon}
-        <Input {...props}/>
-      </Content>
-    </>
+    <Content {...props}>
+      {icon}
+      <Input {...props} />
+    </Content>
   );
 };
 

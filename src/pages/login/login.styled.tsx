@@ -69,7 +69,7 @@ export const Content = styled.div`
     color: ${theme.colors.dark_light};
   }
   .skeleton-logo{
-    margin-top: 100px;
+    margin-top: 70px;
   }
 
   .skeleton-title{

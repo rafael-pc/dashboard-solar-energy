@@ -35,6 +35,7 @@ const RegisterUnits = () => {
               placeholder="Digite o apelido"
               type="text"
               onChange={(e) => handle(e)}
+              className={error.apelido ? "error" : ""}
             />
             {error.apelido && (
               <p>
@@ -49,6 +50,7 @@ const RegisterUnits = () => {
               placeholder="Digite o local"
               type="text"
               onChange={(e) => handle(e)}
+              className={error.local ? "error" : ""}
             />
             {error.local && (
               <p>
@@ -63,6 +65,7 @@ const RegisterUnits = () => {
               placeholder="Digite a marca"
               type="text"
               onChange={(e) => handle(e)}
+              className={error.marca ? "error" : ""}
             />
             {error.marca && (
               <p>
@@ -74,10 +77,10 @@ const RegisterUnits = () => {
               id="modelo"
               title="modelo"
               label="Modelo"
-              style={{ width: "55%" }}
               placeholder="Digite o modelo"
               type="text"
               onChange={(e) => handle(e)}
+              className={error.modelo ? "error" : ""}
             />
             {error.modelo && (
               <p>

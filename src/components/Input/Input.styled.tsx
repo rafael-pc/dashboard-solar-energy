@@ -13,6 +13,10 @@ export const InputStyle = styled.input`
   border: 1px solid ${theme.colors.gray};
   border-radius: ${theme.border.radius.s};
 
+  &.error {
+    border-color: ${theme.colors.error};
+  }
+
   &:hover, &:focus-within {
     border: 2px solid ${theme.colors.bg_primary};
   }

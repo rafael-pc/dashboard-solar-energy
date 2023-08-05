@@ -32,11 +32,11 @@ const RegisterMonth = () => {
             }}
           >
             <Select
+              id="unidade"
               title="unidade"
-              className="select"
               defaultValue=""
               onChange={(e) => handle(e)}
-              id="unidade"
+              className={error.unidade ? "error" : ""}
             >
               <option value="" disabled>
                 Unidade
@@ -66,8 +66,8 @@ const RegisterMonth = () => {
               title="date"
               label="Mês/ano"
               type="month"
-              className="date"
               onChange={(e) => handle(e)}
+              className={error.date ? "error" : ""}
             />
             {error.date && (
               <p>
@@ -79,10 +79,10 @@ const RegisterMonth = () => {
               id="energia"
               title="energia"
               label="Total Kw gerado"
-              placeholder="Digite o total Kw gerado"
               type="text"
-              className="energia"
+              placeholder="Digite o total Kw gerado"
               onChange={(e) => handle(e)}
+              className={error.energia ? "error" : ""}
             />
             {error.energia && (
               <p>

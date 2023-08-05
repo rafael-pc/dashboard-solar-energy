@@ -38,7 +38,7 @@ const Login = () => {
           {isLoading ? (
             <Skeleton
               height={40}
-              width={300}
+              width={200}
               borderRadius={"0.6rem"}
               className="skeleton-title"
             />
@@ -49,7 +49,7 @@ const Login = () => {
             {isLoading ? (
               <Skeleton
                 count={2}
-                height={80}
+                height={40}
                 width={300}
                 borderRadius={"0.6rem"}
               />
@@ -63,6 +63,7 @@ const Login = () => {
                   onChange={(event) => {
                     setEmail(event.target.value);
                   }}
+                  className={error.email ? "error" : ""}
                 />
                 {error.email && (
                   <p>
@@ -78,6 +79,7 @@ const Login = () => {
                   onChange={(event) => {
                     setPassword(event.target.value);
                   }}
+                  className={error.password ? "error" : ""}
                 />
                 {error.password && (
                   <p>
@@ -89,7 +91,7 @@ const Login = () => {
             )}
             {isLoading ? (
               <Skeleton
-                height={80}
+                height={40}
                 width={300}
                 borderRadius={"0.6rem"}
                 className="skeleton-button"

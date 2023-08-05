@@ -102,7 +102,7 @@ export const Form = styled.form`
     margin-left: 0;
     margin: 0 auto;
 
-    .select {
+    .unidade {
       width: 100%;
     }
 

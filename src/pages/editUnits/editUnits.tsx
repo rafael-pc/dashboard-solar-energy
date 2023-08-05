@@ -36,6 +36,7 @@ const EditUnits = () => {
               type="text"
               value={data.apelido}
               onChange={(e) => handle(e)}
+              className={error.apelido ? "error" : ""}
             />
             {error.apelido && (
               <p>
@@ -50,6 +51,7 @@ const EditUnits = () => {
               type="text"
               value={data.local}
               onChange={(e) => handle(e)}
+              className={error.local ? "error" : ""}
             />
             {error.local && (
               <p>
@@ -64,6 +66,7 @@ const EditUnits = () => {
               type="text"
               value={data.marca}
               onChange={(e) => handle(e)}
+              className={error.marca ? "error" : ""}
             />
             {error.marca && (
               <p>
@@ -79,6 +82,7 @@ const EditUnits = () => {
               style={{ width: "50%" }}
               value={data.modelo}
               onChange={(e) => handle(e)}
+              className={error.modelo ? "error" : ""}
             />
             {error.modelo && (
               <p>

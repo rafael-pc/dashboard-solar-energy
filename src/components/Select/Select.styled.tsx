@@ -16,6 +16,10 @@ export const InputSelect = styled.select`
   outline: none;
   font-size: ${theme.font.sizes.xxxs};
 
+  &.error {
+    border-color: ${theme.colors.error};
+  }
+
   &:hover, &:focus-within {
     border: 2px solid ${theme.colors.bg_primary};
   }

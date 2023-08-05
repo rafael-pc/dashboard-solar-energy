@@ -9,10 +9,13 @@ export const Content = styled.div`
   justify-content: space-between;
   padding: 3px;
   margin-top: 15px;
-  background-color: ${theme.colors.neutral_100};
   font-size: ${theme.font.sizes.xxxxs}; 
   border: 1px solid ${theme.colors.gray};
   border-radius: ${theme.border.radius.s};
+
+  &.error {
+    border-color: ${theme.colors.error};
+  }
 
   &:hover, &:focus-within {
     border: 2px solid ${theme.colors.bg_primary};
