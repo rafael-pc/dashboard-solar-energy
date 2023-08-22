@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuMobile renders links when open 1`] = `
+<DocumentFragment>
+  <nav
+    aria-hidden="false"
+    class="sc-bcPKhP prLgQ"
+    id="menu-mobile"
+    open=""
+  >
+    <a
+      href="/dashboard"
+      tabindex="0"
+    >
+      Dashboard
+    </a>
+    <a
+      href="/units"
+      tabindex="0"
+    >
+      Unidade consumidora
+    </a>
+    <a
+      href="/register_month"
+      tabindex="0"
+    >
+      Cadastro de enérgia gerada
+    </a>
+  </nav>
+</DocumentFragment>
+`;

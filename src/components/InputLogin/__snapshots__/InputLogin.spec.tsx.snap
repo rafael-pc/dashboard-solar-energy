@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputLogin renders input and icon 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bcPKhP gZVulA"
+  >
+    <i
+      data-testid="icon"
+    >
+      icon
+    </i>
+    <input
+      class="sc-grXZZQ cwBNSp"
+    />
+  </div>
+</DocumentFragment>
+`;

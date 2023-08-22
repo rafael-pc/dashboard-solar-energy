@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Burger renders correctly when closed 1`] = `
+<button
+  aria-expanded="false"
+  aria-label="Toggle menu"
+  class="sc-bcPKhP cQSnCq"
+>
+  <span />
+  <span />
+  <span />
+</button>
+`;
+
+exports[`Burger renders correctly when open 1`] = `
+<button
+  aria-expanded="true"
+  aria-label="Toggle menu"
+  class="sc-bcPKhP FIjTY"
+  open=""
+>
+  <span />
+  <span />
+  <span />
+</button>
+`;

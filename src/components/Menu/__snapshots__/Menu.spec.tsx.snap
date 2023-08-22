@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Menu renders correctly 1`] = `
+<div>
+  <div
+    class="sc-bcPKhP gmgKME"
+  >
+    <div
+      id="menu-mobile"
+    >
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
+      <div
+        data-focus-lock-disabled="disabled"
+      >
+        <button
+          aria-controls="main-menu"
+          aria-expanded="false"
+          aria-label="Toggle menu"
+          class="sc-grXZZQ IkEIg"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <nav
+          aria-hidden="true"
+          class="sc-ipMvLY fQGCDQ"
+          id="main-menu"
+        >
+          <a
+            href="/dashboard"
+            tabindex="-1"
+          >
+            Dashboard
+          </a>
+          <a
+            href="/units"
+            tabindex="-1"
+          >
+            Unidade consumidora
+          </a>
+          <a
+            href="/register_month"
+            tabindex="-1"
+          >
+            Cadastro de enérgia gerada
+          </a>
+        </nav>
+      </div>
+      <div
+        data-focus-guard="true"
+        style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+        tabindex="-1"
+      />
+    </div>
+  </div>
+</div>
+`;

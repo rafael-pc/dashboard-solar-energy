@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders the title correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-bcPKhP fumFxo"
+  >
+    <h2>
+      Test Title
+    </h2>
+  </div>
+</DocumentFragment>
+`;

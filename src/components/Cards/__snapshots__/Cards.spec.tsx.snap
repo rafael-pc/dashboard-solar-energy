@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cards renders correctly 1`] = `
+<div
+  class="sc-bcPKhP kUlJtQ"
+>
+  <div
+    class="sc-grXZZQ gKirki"
+  >
+    <div
+      class="sc-dkjKgF eWCqCD"
+    >
+      <div>
+        <h3>
+          Total unidades
+        </h3>
+        <span>
+          3
+        </span>
+      </div>
+    </div>
+    <div
+      class="sc-dkjKgF eWCqCD"
+    >
+      <div>
+        <h3>
+          Unidades ativas
+        </h3>
+        <span>
+          2
+        </span>
+      </div>
+    </div>
+    <div
+      class="sc-dkjKgF eWCqCD"
+    >
+      <div>
+        <h3>
+          Unidades inativas
+        </h3>
+        <span>
+          1
+        </span>
+      </div>
+    </div>
+    <div
+      class="sc-dkjKgF eWCqCD"
+    >
+      <div>
+        <h3>
+          Média de energia
+        </h3>
+        <span>
+          20W
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

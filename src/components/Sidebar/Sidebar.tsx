@@ -14,7 +14,7 @@ const Sidebar: FC = () => {
             <S.Logo src={LogoMobile} alt="logo" className="logo-mobile"/>
           </Link>
           <S.Menu>
-            <S.Logo src={LogoImage} alt="logo" className="logo"/>
+            <S.Logo src={LogoImage} alt="logo" className="logo" data-testid="logo"/>
             <S.Page>
               <Link to="/dashboard" className="link">
                 <FaChartPie className="chart-pie" />

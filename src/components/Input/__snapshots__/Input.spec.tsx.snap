@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders the label and input correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-grXZZQ ldPpiH"
+  >
+    Test Label
+  </div>
+  <input
+    class="sc-bcPKhP hWjIqT"
+  />
+</DocumentFragment>
+`;

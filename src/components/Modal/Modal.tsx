@@ -1,5 +1,11 @@
 import { FC } from "react";
-import { Modal as Modals, Box, Collapse, IconButton } from "@mui/material";
+import {
+  Modal as Modals,
+  Box,
+  Collapse,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Alert from "@mui/material/Alert";
 
@@ -11,7 +17,13 @@ interface IModalProps {
   handleClose: () => void;
 }
 
-const Modal: FC<IModalProps> = ({isOpen, message, isSuccessful, setOpen, handleClose}) => {
+const Modal: FC<IModalProps> = ({
+  isOpen,
+  message,
+  isSuccessful,
+  setOpen,
+  handleClose,
+}) => {
   const BoxStyled = {
     position: "absolute",
     top: "8%",
@@ -43,7 +55,7 @@ const Modal: FC<IModalProps> = ({isOpen, message, isSuccessful, setOpen, handleC
                 </IconButton>
               }
             >
-              {message}
+              <Typography sx={{ fontWeight: 700 }}>{message}</Typography>
             </Alert>
           ) : (
             <Alert
@@ -61,7 +73,7 @@ const Modal: FC<IModalProps> = ({isOpen, message, isSuccessful, setOpen, handleC
                 </IconButton>
               }
             >
-              {message}
+              <Typography sx={{ fontWeight: 700 }}>{message}</Typography>
             </Alert>
           )}
         </Collapse>
