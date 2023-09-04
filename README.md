@@ -3,7 +3,7 @@
 
 ## Descrição
 
-<p>Este projeto é uma aplicação web desenvolvida em React e typescript que permite o gerenciamento de unidades consumidoras e suas respectivas gerações de energia mensais.</p><br>
+<p>Este projeto é uma aplicação web desenvolvida em React e typescript que permite o gerenciamento de unidades consumidoras e suas respectivas gerações de energia mensais.</p>
 
 ### desktop
 
