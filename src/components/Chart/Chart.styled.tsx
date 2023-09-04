@@ -18,7 +18,7 @@ export const ContainerChart = styled.div`
 
   @media only screen and (max-width: ${theme.screen.large_desktop}) {
     width: 80%;
-    height: 50%;
+    height: 45%;
     margin-top: 50px;
   }
 
